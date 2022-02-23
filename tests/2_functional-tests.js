@@ -20,7 +20,7 @@ suite("Functional Tests", () => {
                assert.approximately(returnNum, 2.2046, 0.0001);
                assert.equal(returnUnit, "lbs");
                assert.isString(string);
-               assert.equal(string, `1 kilogram converts to ${returnNum} pounds`);
+               assert.equal(string, `1 kilograms converts to ${returnNum} pounds`);
                done();
             });
       });
@@ -74,7 +74,7 @@ suite("Functional Tests", () => {
                assert.approximately(returnNum, 2.2046, 0.0001);
                assert.equal(returnUnit, "lbs");
                assert.isString(string);
-               assert.equal(string, `1 kilogram converts to ${returnNum} pounds`);
+               assert.equal(string, `1 kilograms converts to ${returnNum} pounds`);
                done();
             });
       });

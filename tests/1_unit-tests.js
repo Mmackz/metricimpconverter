@@ -66,7 +66,7 @@ suite("Unit Tests", () => {
       });
       suite(".getUnit() outputs", () => {
          test("read each valid input unit", (done) => {
-            const validUnits = ["mi", "km", "gal", "l", "lbs", "kg"];
+            const validUnits = ["mi", "km", "gal", "L", "lbs", "kg"];
             const inputs = [
                "1KM",
                "1.2mI",
@@ -98,7 +98,7 @@ suite("Unit Tests", () => {
       suite(".getReturnUnit() outputs", () => {
          test("return the correct return unit for each valid input unit", (done) => {
             const units = ["mi", "km", "gal", "l", "lbs", "kg"];
-            const returnUnits = ["km", "mi", "l", "gal", "kg", "lbs"];
+            const returnUnits = ["km", "mi", "L", "gal", "kg", "lbs"];
             units.forEach((unit, i) =>
                assert.strictEqual(
                   convertHandler.getReturnUnit(unit),
@@ -112,7 +112,7 @@ suite("Unit Tests", () => {
       suite(".spellOutUnit() outputs", () => {
          test("return the spelled-out string unit for each valid input unit", (done) => {
             const units = ["mi", "km", "gal", "l", "lbs", "kg"];
-            const fullname = ["mile", "kilometer", "gallon", "liter", "pound", "kilogram"];
+            const fullname = ["miles", "kilometers", "gallons", "liters", "pounds", "kilograms"];
             units.forEach((unit, i) =>
                assert.strictEqual(convertHandler.spellOutUnit(unit), fullname[i])
             );
