@@ -11,7 +11,7 @@ module.exports = function (app) {
       }
 
       const inputString = req.query.input;
-      const unit = convertHandler.getUnit(inputString);
+      let unit = convertHandler.getUnit(inputString);
       const initVal = convertHandler.getNum(inputString);
 
       // if either input is invalid, return error
@@ -24,9 +24,16 @@ module.exports = function (app) {
             res.send("invalid number");
          }
       } else {
-         const returnUnit = convertHandler.getReturnUnit(unit);
+         let returnUnit = convertHandler.getReturnUnit(unit);
          const returnNum = convertHandler.convert(initVal, unit);
          const string = convertHandler.getString(initVal, unit, returnNum, returnUnit);
+
+         if (unit === "l") {
+            unit = "L";
+         }
+         if (returnUnit === "l") {
+            returnUnit = "L";
+         }
 
          res.json({ initNum: initVal, initUnit: unit, returnNum, returnUnit, string });
       }
