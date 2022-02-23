@@ -28,14 +28,9 @@ module.exports = function (app) {
          const returnNum = convertHandler.convert(initVal, unit);
          const string = convertHandler.getString(initVal, unit, returnNum, returnUnit);
 
-         if (unit === "l") {
-            unit = "L";
-         }
-         if (returnUnit === "l") {
-            returnUnit = "L";
-         }
+        
 
-         res.json({ initNum: initVal, initUnit: unit, returnNum, returnUnit, string });
+         res.json({ initNum: initVal, initUnit: unit, returnNum, returnUnit: returnUnit, string });
       }
    });
 };

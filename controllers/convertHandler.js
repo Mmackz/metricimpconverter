@@ -32,29 +32,35 @@ function ConvertHandler() {
       if (inputUnit === null || !validUnits.flat().includes(inputUnit[0])) {
          return null;
       }
-      return inputUnit[0];
+      return inputUnit[0] === "l" ? "L" : inputUnit[0];
    };
 
    this.getReturnUnit = function (initUnit) {
       // return opposite value in sub-array (found in validUnits array)
-      const arr = validUnits[validUnits.findIndex((arr) => arr.includes(initUnit))];
-      return arr[Math.abs(arr.findIndex((unit) => unit === initUnit) - 1)];
+      const initialUnit = initUnit.toLowerCase();
+      const arr = validUnits[validUnits.findIndex((arr) => arr.includes(initialUnit))];
+      let returnUnit = arr[Math.abs(arr.findIndex((unit) => unit === initialUnit) - 1)];
+
+      if (returnUnit === "l") {
+        returnUnit = "L"
+      }
+      return returnUnit;
    };
 
    this.spellOutUnit = function (unit) {
-      switch (unit) {
+      switch (unit.toLowerCase()) {
          case "lbs":
-            return "pound";
+            return "pounds";
          case "kg":
-            return "kilogram";
+            return "kilograms";
          case "mi":
-            return "mile";
+            return "miles";
          case "km":
-            return "kilometer";
+            return "kilometers";
          case "gal":
-            return "gallon";
+            return "gallons";
          case "l":
-            return "liter";
+            return "liters";
       }
    };
 
@@ -62,7 +68,7 @@ function ConvertHandler() {
       const galToL = 3.78541;
       const lbsToKg = 0.453592;
       const miToKm = 1.60934;
-      switch (initUnit) {
+      switch (initUnit.toLowerCase()) {
          case "lbs":
             return truncateNum(initNum * lbsToKg);
          case "kg":
@@ -82,9 +88,11 @@ function ConvertHandler() {
       const unitFrom = this.spellOutUnit(initUnit);
       const unitTo = this.spellOutUnit(returnUnit);
 
-      return `${initNum} ${
-         initNum === 1 ? unitFrom : `${unitFrom}s`
-      } converts to ${returnNum} ${returnNum === 1 ? unitTo : `${unitTo}s`}`;
+      return `${initNum} ${unitFrom} converts to ${returnNum} ${unitTo}`
+
+   //    return `${initNum} ${
+   //       initNum === 1 ? unitFrom : `${unitFrom}s`
+   //    } converts to ${returnNum} ${returnNum === 1 ? unitTo : `${unitTo}s`}`;
    };
 }
 
